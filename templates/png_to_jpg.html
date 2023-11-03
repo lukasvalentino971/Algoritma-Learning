@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<h1>Convert PNG to JPEG</h1>
+<form method="POST" action="/png_to_jpg" enctype="multipart/form-data">
+	<input type="file" name="image" accept=".png">
+	<button type="submit">Convert</button>
+</form>
+{% if converted %}
+	<h4>Result:</h4>
+	<img src="{{ url_for('static', filename='images/output.jpg') }}" alt="Converted Image" width="20%" height="12%">
+	<p><a href="{{ url_for('download_image') }}">Download Image</a></p>
+{% endif %}
+
+
+<style>
+    
+</style>
+{% endblock %}
+
+

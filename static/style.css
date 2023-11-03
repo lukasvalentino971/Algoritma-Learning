@@ -3,10 +3,12 @@
 */
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
-
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
+}
+#content{
+    width: 100%;
 }
 
 p {
@@ -24,6 +26,7 @@ a, a:hover, a:focus {
 }
 
 .navbar {
+    height: 15%;
     padding: 15px 10px;
     background: #fff;
     border: none;
@@ -95,7 +98,6 @@ a, a:hover, a:focus {
     background: #6d7fcc;
 }
 
-
 a[data-toggle="collapse"] {
     position: relative;
 }
@@ -111,7 +113,6 @@ a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
 a[aria-expanded="true"]::before {
     content: '\e260';
 }
-
 
 ul ul a {
     font-size: 0.9em !important;
@@ -140,8 +141,6 @@ a.article, a.article:hover {
     background: #6d7fcc !important;
     color: #fff !important;
 }
-
-
 
 /* ---------------------------------------------------
     CONTENT STYLE
