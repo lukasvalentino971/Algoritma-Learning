@@ -33,9 +33,11 @@
                     <li>
                         <a href="#spk" data-toggle="collapse" aria-expanded="false">Pendukung Keputusan</a>
                         <ul class="collapse list-unstyled" id="spk">
-                            <li><a href="#">Electre</a></li>
-                            <li><a href="#">a</a></li>
-                            <li><a href="#">Page 3</a></li>
+                            <li>
+                                <a href="{{ url_for('electre_four') }}">Electre 4</a>
+                            </li>
+                            <li><a href="#">EDAS</a></li>
+                            <li><a href="#">MABAC</a></li>
                         </ul>
                     </li>
                     <li>
@@ -91,10 +93,11 @@
 
 
         <!-- jQuery CDN -->
-         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+         <!-- <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script> -->
+         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
          <!-- Bootstrap Js CDN -->
          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+         <script src="../static/js/script.js"></script>
          <script type="text/javascript">
              $(document).ready(function () {
                  $('#sidebarCollapse').on('click', function () {

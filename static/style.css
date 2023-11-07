@@ -26,7 +26,7 @@ a, a:hover, a:focus {
 }
 
 .navbar {
-    height: 15%;
+    height: 84px;
     padding: 15px 10px;
     background: #fff;
     border: none;
@@ -164,4 +164,94 @@ a.article, a.article:hover {
     #sidebarCollapse span {
         display: none;
     }
+}
+
+/* ---------------------------------------------------
+    ELECTRE FORM
+----------------------------------------------------- */
+
+.buttom-electre-form input[type="number"] {
+    width: 64px;
+}
+
+.calculation {
+    background-color: #FAFAFA;
+    border: 1px solid black;
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+    margin: 4px;
+    max-height: 128px;
+    overflow: auto;
+}
+
+.electre-form {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 10px 6px 5px rgba(0, 0, 0, 0.1);
+
+    font-size: 16;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+.electre-form td {
+    padding: 4px;
+}
+
+.electre-form input[type="file"] {
+    padding: 4px;
+}
+
+.electre-form button {
+    margin-top: 8px;
+    margin-left: 4px;
+}
+
+.electre-result {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 10px 6px 5px rgba(0, 0, 0, 0.1);
+
+    font-size: 16;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+.electre-result div, span {
+    padding: 8px;
+}
+
+.electre-result-title {
+    font-size: 24;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+
+    margin-top: -20px;
+    color: black;
+}
+
+.flexed {
+    display: flex;
+    align-items: center;
+}
+
+.matrix td {
+    border: 0.5px solid black;
+    padding: 2px 8px;
+}
+
+.title-electre-form {
+    font-weight: 500;
+    min-width: 42px;
+}
+
+.top-electre-form {
+    width: 100%;
 }
