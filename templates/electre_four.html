@@ -1,0 +1,283 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<h1>Electre 4</h1>
+<div class="electre-form">
+    <table class="top-electre-form">
+        <tr>
+            <td>
+                <div>
+                    <span class="title-electre-form">Input Matrix</span>
+                    <table>
+                        <tr>
+                            <td>Row</td>
+                            <td><input type="number" min=2 value=2 id="row" onchange="change_matrix_shape()"></td>
+                        </tr>
+                        <tr>
+                            <td>Column</td>
+                            <td><input type="number" min=1 value=1 id="column" onchange="change_matrix_shape()"></td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <span class="title-electre-form">Choose CSV File</span>
+                    <input type="file" accept=".csv">
+                    <button type="submit">Calculate CSV</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    {% set y = 2 %}
+    {% set x = 1 %}
+    <table class="buttom-electre-form" id="initial-matrix">
+        <tr>
+            <td>
+                <input type="number" id="x00" value=0 min=0>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="number" id="x10" value=0 min=0>
+            </td>
+        </tr>
+    </table>
+    <span class="title-electre-form">Weight</span>
+    <table class="buttom-electre-form" id="weight-matrix">
+        <tr>
+            <td>
+                <input type="number" id="w0" value=0 min=0>
+            </td>
+        </tr>
+    </table>
+    <button type="submit" onclick="calculate_matrix()">Calculate Matrix</button>
+</div>
+
+<p class="electre-result-title">Result</p>
+
+<div class="electre-result">
+    <span class="title-electre-form" colspan="3">A. Normalized Matrix</span>
+    <div class="flexed">
+        <span class="title-electre-form">R = </span>
+        <div>
+            <table class="matrix">
+                {% for i in range(y) %}
+                <tr>
+                    {% for j in range(x) %}
+                    <td>0</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="calculation">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi, veritatis modi et labore officiis
+            amet. Alias dolore cupiditate sapiente recusandae id suscipit deserunt, earum, necessitatibus optio
+            eveniet magnam, iste ab?
+        </div>
+    </div>
+    <span class="title-electre-form" colspan="3">B. Weighted Matrix</span><br>
+    <div class="flexed">
+        <span class="title-electre-form">V = </span>
+        <div>
+            <table class="matrix">
+                {% for i in range(y) %}
+                <tr>
+                    {% for j in range(x) %}
+                    <td>0</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="calculation">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi, veritatis modi et labore officiis
+            amet. Alias dolore cupiditate sapiente recusandae id suscipit deserunt, earum, necessitatibus optio
+            eveniet magnam, iste ab?
+        </div>
+    </div>
+    <span class="title-electre-form" colspan="3">C. Concordance</span>
+    <div class="flexed">
+        <div>
+            {% for i in range(y) %}
+            {% for j in range(x) %}
+            {% if i != j %}
+            <table>
+                <tr>
+                    <td class="title-electre-form">C{{i+1}}{{j+1}}</td>
+                    <td>{0}</td>
+                </tr>
+            </table>
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="flexed">
+            <span class="title-electre-form">C = </span>
+            <div>
+                <table class="matrix">
+                    {% for i in range(y) %}
+                    <tr>
+                        {% for j in range(x) %}
+                        <td>0</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="calculation">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi, veritatis modi et labore officiis
+                amet. Alias dolore cupiditate sapiente recusandae id suscipit deserunt, earum, necessitatibus optio
+                eveniet magnam, iste ab?
+            </div>
+        </div>
+    </div>
+    <span class="title-electre-form" colspan="3">D. Discordance</span>
+    <div class="flexed">
+        <div>
+            {% for i in range(y) %}
+            {% for j in range(x) %}
+            {% if i != j %}
+            <table>
+                <tr>
+                    <td class="title-electre-form">D{{i+1}}{{j+1}}</td>
+                    <td>{0}</td>
+                </tr>
+            </table>
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="flexed">
+            <span class="title-electre-form">D = </span>
+            <div>
+                <table class="matrix">
+                    {% for i in range(y) %}
+                    <tr>
+                        {% for j in range(x) %}
+                        <td>0</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="calculation">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi, veritatis modi et labore
+                officiis
+                amet. Alias dolore cupiditate sapiente recusandae id suscipit deserunt, earum, necessitatibus
+                optio
+                eveniet magnam, iste ab?
+            </div>
+        </div>
+    </div>
+    <span class="title-electre-form" colspan="3">E. Dominance Concordance Matrix</span>
+    <div class="flexed">
+        <div class="title-electre-form">C = </div>
+        <div>
+            <table class="matrix">
+                {% for i in range(y) %}
+                <tr>
+                    {% for j in range(y) %}
+                    <td>0</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="calculation">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi, veritatis modi et labore
+            officiis
+            amet. Alias dolore cupiditate sapiente recusandae id suscipit deserunt, earum, necessitatibus
+            optio
+            eveniet magnam, iste ab?
+        </div>
+    </div>
+    <span class="title-electre-form" colspan="3">E. Dominance Discordance Matrix</span>
+    <div class="flexed">
+        <span class="title-electre-form">D = </span>
+        <div>
+            <table class="matrix">
+                {% for i in range(y) %}
+                <tr>
+                    {% for j in range(y) %}
+                    <td>0</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="calculation">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi, veritatis modi et labore
+            officiis
+            amet. Alias dolore cupiditate sapiente recusandae id suscipit deserunt, earum, necessitatibus
+            optio
+            eveniet magnam, iste ab?
+        </div>
+    </div>
+    <div class="title-electre-form" colspan="3">F. Aggregate Dominance Matrix</div>
+    <div class="flexed">
+        <span class="title-electre-form">E = </span>
+        <div>
+            <table class="matrix">
+                {% for i in range(y) %}
+                <tr>
+                    {% for j in range(y) %}
+                    <td>0</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div>
+            <table class="matrix">
+                {% for i in range(y) %}
+                <tr>
+                    <td>0</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div>
+            <table class="matrix">
+                {% for i in range(y) %}
+                <tr>
+                    <td>0</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="calculation">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi, veritatis modi et labore
+            officiis
+            amet. Alias dolore cupiditate sapiente recusandae id suscipit deserunt, earum, necessitatibus
+            optio
+            eveniet magnam, iste ab?
+        </div>
+    </div>
+    <td class="title-electre-form" colspan="3">G. Eliminate Less Favorable Alternatives</td>
+    <div class="flexed">
+        <span class="title-electre-form">E = </span>
+        <div>
+            <table class="matrix">
+                {% for i in range(y) %}
+                <tr>
+                    <td>A{{ i+1 }}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="calculation">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi, veritatis modi et labore
+            officiis
+            amet. Alias dolore cupiditate sapiente recusandae id suscipit deserunt, earum, necessitatibus
+            optio
+            eveniet magnam, iste ab?
+        </div>
+    </div>
+</div>
+
+{% endblock %}
