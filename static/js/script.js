@@ -10,7 +10,7 @@ function change_matrix_shape() {
         for (let j = 0; j < column; j++) {
             temp_html += `
             <td>
-                <input type="number" id="x${ i }${ j }" value=0 min=0>
+                <input type="number" id="x${ i }${ j }" min=0.01>
             </td>
             `
         }
@@ -21,7 +21,7 @@ function change_matrix_shape() {
     for (let j = 0; j < column; j++) {
         let temp_html = `
         <td>
-            <input type="number" id="w${ j }" value=0 min=0>
+            <input type="number" id="w${ j }" min=0.01>
         </td>
         `
 
@@ -39,12 +39,26 @@ function calculate_matrix() {
     for (var i = 0; i < row; i++) {
         matrix[i] = []
         for (var j = 0; j < column; j++) {
-            matrix[i][j] = parseFloat($(`#x${i}${j}`).val())
+            value = $(`#x${i}${j}`).val()
+
+            if (!value){
+                alert("Matrix Can't Be Empty")
+                return
+            }
+
+            matrix[i][j] = parseFloat(value)
         }
     }
 
     for (var j = 0; j < column; j++) {
-        weight[j] = parseFloat($(`#w${j}`).val())
+        value = $(`#w${j}`).val()
+
+        if (!value){
+            alert("Weight Can't Be Empty")
+            return
+        }
+
+        weight[j] = parseFloat(value)
     }
 
     let form_data = new FormData()
@@ -59,6 +73,87 @@ function calculate_matrix() {
         processData: false,
         success: function (response) {
             console.log(response)
+            result = response.result
+            change_result(result)
+        },
+        error: function (xhr, status, error) {
+            // console.log(error)
+            alert('Enter a New Matrix or Weight!!!\nInvalid Matrix or Weight!!!')
         }
     })
 }
+
+function change_result(result) {
+    $('#r-matrix').empty();
+
+    for (let i = 0; i < result.normalized_matrix.length; i++) {
+        let temp_html = `<tr>`
+        for (let j = 0; j < result.normalized_matrix[0].length; j++) {
+            temp_html += `
+            <td>
+                ${result.normalized_matrix[i][j]}
+            </td>
+            `
+        }
+        temp_html += `</tr>`
+        $('#r-matrix').append(temp_html);
+    }
+
+    $('#v-matrix').empty();
+
+    for (let i = 0; i < result.weighted_matrix.length; i++) {
+        let temp_html = `<tr>`
+        for (let j = 0; j < result.weighted_matrix[0].length; j++) {
+            temp_html += `
+            <td>
+                ${result.weighted_matrix[i][j]}
+            </td>
+            `
+        }
+        temp_html += `</tr>`
+        $('#v-matrix').append(temp_html);
+    }
+
+    $('#c-set').empty();
+
+    for (let i = 0; i < result.weighted_matrix.length; i++) {
+        for (let j = 0; j < result.weighted_matrix.length; j++) {
+            if (i != j) {
+                let c_indeks = `C${i+1}${j+1}`
+                console.log(result.concordance_set.c_indeks)
+                let value_c_set = result.concordance_set[c_indeks]
+                let temp_html = `
+                <table>
+                    <tr>
+                        <td class="title-electre-form">${c_indeks}</td>
+                        <td>${value_c_set}</td>
+                    </tr>
+                </table>
+                `
+                $('#c-set').append(temp_html);
+            }
+        }
+    }
+}
+
+// function calculate_csv() {
+//     var csv_file = $('#csv-file').val()
+
+//     let form_data = new FormData()
+//     form_data.append('csv_file', csv_file)
+
+//     $.ajax({
+//         type: 'POST',
+//         url: '/post_electre_four',
+//         data: form_data,
+//         contentType: false,
+//         processData: false,
+//         success: function (response) {
+//             console.log(response)
+//         },
+//         error: function (xhr, status, error) {
+//             // console.log(error)
+//             alert('Enter a New Matrix or Weight!!!\nInvalid Matrix or Weight!!!')
+//         }
+//     })
+// }
