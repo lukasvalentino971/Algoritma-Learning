@@ -76,5 +76,6 @@ benefit = np.array([[2, 2, 3],
 cost = np.array([[2, 7],
                  [1, 2],
                  [2, 4]])
+
 print (criteriaBenefitNormalisation(benefit))
 print(criteriaCostNormalisation(cost))

@@ -30,6 +30,10 @@ def download_image():
 def electre_four():
     return render_template("electre_four.html")
 
+@app.route('/WPM_WSM')
+def WPM_WSM():
+    return render_template("WPM_WSM.html")
+
 @app.route('/post_electre_four', methods=["POST"])
 def post_electre_four():
     

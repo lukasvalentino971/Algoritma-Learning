@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<div class="electre-form">
+    <table class="top-electre-form">
+        <tr>
+            <td>
+                <div>
+                    <span class="title-electre-form">Input Matrix</span>
+                    <table>
+                        <tr>
+                            <td>Row</td>
+                            <td><input type="number" min=2 value=2 id="row" onchange="change_matrix_shape()"></td>
+                        </tr>
+                        <tr>
+                            <td>Column</td>
+                            <td><input type="number" min=1 value=1 id="column" onchange="change_matrix_shape()"></td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <span class="title-electre-form">Choose CSV File</span>
+                    <input type="file" accept=".csv" id="csv-file">
+                    <button type="submit">Calculate CSV</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+{% endblock %}
