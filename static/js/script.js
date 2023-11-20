@@ -72,7 +72,7 @@ function calculate_matrix() {
         contentType: false,
         processData: false,
         success: function (response) {
-            console.log(response)
+            // console.log(response)
             result = response.result
             change_result(result)
         },
@@ -116,21 +116,23 @@ function change_result(result) {
 
     $('#c-set').empty();
 
+    let set_index = 0
+
     for (let i = 0; i < result.weighted_matrix.length; i++) {
         for (let j = 0; j < result.weighted_matrix.length; j++) {
             if (i != j) {
                 let c_indeks = `C${i+1}${j+1}`
-                console.log(result.concordance_set.c_indeks)
-                let value_c_set = result.concordance_set[c_indeks]
+                let value_c_set = result.concordance_set[set_index][c_indeks]
                 let temp_html = `
                 <table>
                     <tr>
                         <td class="title-electre-form">${c_indeks}</td>
-                        <td>${value_c_set}</td>
+                        <td>{${value_c_set}}</td>
                     </tr>
                 </table>
                 `
                 $('#c-set').append(temp_html);
+                set_index++
             }
         }
     }

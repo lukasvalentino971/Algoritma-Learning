@@ -183,6 +183,7 @@ a.article, a.article:hover {
     margin: 4px;
     max-height: 128px;
     overflow: auto;
+    display: none;
 }
 
 .electre-form {
