@@ -184,17 +184,33 @@ function change_result(result) {
     // Update Matriks Discordance
     $('#d-matrix').empty();
 
-    for (let i = 0; i < result.concordance_matrix.length; i++) {
+    for (let i = 0; i < result.discordance_matrix.length; i++) {
         let temp_html = `<tr>`
-        for (let j = 0; j < result.concordance_matrix[0].length; j++) {
+        for (let j = 0; j < result.discordance_matrix[0].length; j++) {
             temp_html += `
             <td>
-                ${result.concordance_matrix[i][j]}
+                ${result.discordance_matrix[i][j]}
             </td>
             `
         }
         temp_html += `</tr>`
         $('#d-matrix').append(temp_html);
+    }
+
+    // Update Matriks Dominan Concordance
+    $('#d-c-matrix').empty();
+
+    for (let i = 0; i < result.dominance_concordance_matrix.length; i++) {
+        let temp_html = `<tr>`
+        for (let j = 0; j < result.dominance_concordance_matrix.length; j++) {
+            temp_html += `
+            <td>
+                ${result.dominance_concordance_matrix[i][j]}
+            </td>
+            `
+        }
+        temp_html += `</tr>`
+        $('#d-c-matrix').append(temp_html);
     }
 }
 
