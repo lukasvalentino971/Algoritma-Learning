@@ -93,30 +93,20 @@
     <span class="title-electre-form" colspan="3">C. Concordance</span>
     <div class="flexed">
         <div id="c-set">
-            {% for i in range(y) %}
-            {% for j in range(x) %}
-            {% if i != j %}
             <table>
                 <tr>
-                    <td class="title-electre-form">C{{i+1}}{{j+1}}</td>
+                    <td class="title-electre-form">C12</td>
                     <td>{0}</td>
                 </tr>
             </table>
-            {% endif %}
-            {% endfor %}
-            {% endfor %}
         </div>
         <div class="flexed">
             <span class="title-electre-form">C = </span>
             <div>
                 <table class="matrix" id="c-matrix">
-                    {% for i in range(y) %}
                     <tr>
-                        {% for j in range(x) %}
                         <td>0</td>
-                        {% endfor %}
                     </tr>
-                    {% endfor %}
                 </table>
             </div>
             <div class="calculation">

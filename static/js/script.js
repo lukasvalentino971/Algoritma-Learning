@@ -84,6 +84,8 @@ function calculate_matrix() {
 }
 
 function change_result(result) {
+
+    // Update Matriks R
     $('#r-matrix').empty();
 
     for (let i = 0; i < result.normalized_matrix.length; i++) {
@@ -99,6 +101,7 @@ function change_result(result) {
         $('#r-matrix').append(temp_html);
     }
 
+    // Update Matriks V
     $('#v-matrix').empty();
 
     for (let i = 0; i < result.weighted_matrix.length; i++) {
@@ -114,6 +117,7 @@ function change_result(result) {
         $('#v-matrix').append(temp_html);
     }
 
+    // Update Himpunan Concordance
     $('#c-set').empty();
 
     let set_index = 0
@@ -132,6 +136,46 @@ function change_result(result) {
                 </table>
                 `
                 $('#c-set').append(temp_html);
+                set_index++
+            }
+        }
+    }
+
+    // Update Matriks Concordance
+    $('#c-matrix').empty();
+
+    for (let i = 0; i < result.concordance_matrix.length; i++) {
+        let temp_html = `<tr>`
+        for (let j = 0; j < result.concordance_matrix[0].length; j++) {
+            temp_html += `
+            <td>
+                ${result.concordance_matrix[i][j]}
+            </td>
+            `
+        }
+        temp_html += `</tr>`
+        $('#c-matrix').append(temp_html);
+    }
+
+    // Update Himpunan Concordance
+    $('#d-set').empty();
+
+    set_index = 0
+
+    for (let i = 0; i < result.weighted_matrix.length; i++) {
+        for (let j = 0; j < result.weighted_matrix.length; j++) {
+            if (i != j) {
+                let c_indeks = `C${i+1}${j+1}`
+                let value_c_set = result.concordance_set[set_index][c_indeks]
+                let temp_html = `
+                <table>
+                    <tr>
+                        <td class="title-electre-form">${c_indeks}</td>
+                        <td>{${value_c_set}}</td>
+                    </tr>
+                </table>
+                `
+                $('#d-set').append(temp_html);
                 set_index++
             }
         }
