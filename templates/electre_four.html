@@ -119,30 +119,20 @@
     <span class="title-electre-form" colspan="3">D. Discordance</span>
     <div class="flexed">
         <div>
-            {% for i in range(y) %}
-            {% for j in range(x) %}
-            {% if i != j %}
             <table>
                 <tr id="d-set">
-                    <td class="title-electre-form">D{{i+1}}{{j+1}}</td>
+                    <td class="title-electre-form">D12</td>
                     <td>{0}</td>
                 </tr>
             </table>
-            {% endif %}
-            {% endfor %}
-            {% endfor %}
         </div>
         <div class="flexed">
             <span class="title-electre-form">D = </span>
             <div>
                 <table class="matrix" id="d-matrix">
-                    {% for i in range(y) %}
                     <tr>
-                        {% for j in range(x) %}
                         <td>0</td>
-                        {% endfor %}
                     </tr>
-                    {% endfor %}
                 </table>
             </div>
             <div class="calculation">

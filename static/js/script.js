@@ -157,7 +157,7 @@ function change_result(result) {
         $('#c-matrix').append(temp_html);
     }
 
-    // Update Himpunan Concordance
+    // Update Himpunan Discordance
     $('#d-set').empty();
 
     set_index = 0
@@ -165,13 +165,13 @@ function change_result(result) {
     for (let i = 0; i < result.weighted_matrix.length; i++) {
         for (let j = 0; j < result.weighted_matrix.length; j++) {
             if (i != j) {
-                let c_indeks = `C${i+1}${j+1}`
-                let value_c_set = result.concordance_set[set_index][c_indeks]
+                let d_indeks = `D${i+1}${j+1}`
+                let value_d_set = result.discordance_set[set_index][d_indeks]
                 let temp_html = `
                 <table>
                     <tr>
-                        <td class="title-electre-form">${c_indeks}</td>
-                        <td>{${value_c_set}}</td>
+                        <td class="title-electre-form">${d_indeks}</td>
+                        <td>{${value_d_set}}</td>
                     </tr>
                 </table>
                 `
@@ -179,6 +179,22 @@ function change_result(result) {
                 set_index++
             }
         }
+    }
+
+    // Update Matriks Discordance
+    $('#d-matrix').empty();
+
+    for (let i = 0; i < result.concordance_matrix.length; i++) {
+        let temp_html = `<tr>`
+        for (let j = 0; j < result.concordance_matrix[0].length; j++) {
+            temp_html += `
+            <td>
+                ${result.concordance_matrix[i][j]}
+            </td>
+            `
+        }
+        temp_html += `</tr>`
+        $('#d-matrix').append(temp_html);
     }
 }
 
