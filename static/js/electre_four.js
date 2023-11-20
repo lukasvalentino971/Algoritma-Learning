@@ -212,6 +212,22 @@ function change_result(result) {
         temp_html += `</tr>`
         $('#d-c-matrix').append(temp_html);
     }
+
+    // Update Matriks Dominan Discordance
+    $('#d-d-matrix').empty();
+
+    for (let i = 0; i < result.dominance_discordance_matrix.length; i++) {
+        let temp_html = `<tr>`
+        for (let j = 0; j < result.dominance_discordance_matrix.length; j++) {
+            temp_html += `
+            <td>
+                ${result.dominance_discordance_matrix[i][j]}
+            </td>
+            `
+        }
+        temp_html += `</tr>`
+        $('#d-d-matrix').append(temp_html);
+    }
 }
 
 // function calculate_csv() {
