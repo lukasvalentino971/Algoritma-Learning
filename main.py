@@ -25,7 +25,7 @@ def png_to_jpg():
 @app.route('/download_image')
 def download_image():
     return send_file('static/images/output.jpg', as_attachment=True)
-
+    
 @app.route('/electre_four')
 def electre_four():
     return render_template("electre_four.html")
@@ -71,6 +71,11 @@ def post_electre_four():
     }
     
     return jsonify({'message': 'success', 'result': result})
+
+@app.route('/Caesar_Cipher')
+def view_caesar_cipher():
+    return render_template("caesar_cipher.html")  
+    
 
 if __name__ == "__main__":
     app.run(debug=True)

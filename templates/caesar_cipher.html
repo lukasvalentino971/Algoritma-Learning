@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<h1>Caesar Cipher Algoritma</h1>
+<form>
+    <label for="k1">Masukkan kalimat yang ingin di encode atau decode :</label><br>
+    <input type="text" id="k1"><br>
+    <label for="k2">Masukkan jumlah shift :</label><br>
+    <input type="number" id="n2" name="numberC">
+</form>
+<button onclick="encode()">Encode</button>
+<button onclick="decode()">Decode</button>
+
+<script>
+    function encode() {
+        var inputText = document.getElementById("k1").value;
+        var shiftAmount = document.getElementById("n2").value;
+        // Tambahkan kode Python untuk encode di sini
+        // Misalnya, dengan menggunakan fungsi atau AJAX request ke server
+        console.log("Encoded text:", inputText, "with shift:", shiftAmount);
+    }
+
+    function decode() {
+        var inputText = document.getElementById("k1").value;
+        var shiftAmount = document.getElementById("n2").value;
+        // Tambahkan kode Python untuk decode di sini
+        // Misalnya, dengan menggunakan fungsi atau AJAX request ke server
+        console.log("Decoded text:", inputText, "with shift:", shiftAmount);
+    }
+</script>
+
+<style>
+    /* Tambahkan gaya sesuai kebutuhan */
+</style>
+{% endblock %}
