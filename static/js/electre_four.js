@@ -84,6 +84,11 @@ function calculate_matrix() {
 }
 
 function change_result(result) {
+    // Show Judul Hasil
+    $('.electre-result-title').show()
+
+    // Show Hasil
+    $('.electre-result').show()
 
     // Update Matriks R
     $('#r-matrix').empty();
@@ -227,6 +232,67 @@ function change_result(result) {
         }
         temp_html += `</tr>`
         $('#d-d-matrix').append(temp_html);
+    }
+
+    // Update Matriks Aggregate Dominan
+    $('#a-d-matrix').empty();
+
+    let header_html = `
+    <tr>
+        <th style="color: white">:)</th>
+    </tr>
+    `
+    $('#a-d-matrix').append(header_html);
+
+    for (let i = 0; i < result.aggregate_dominance_matrix.length; i++) {
+        let temp_html = `<tr>`
+        for (let j = 0; j < result.aggregate_dominance_matrix.length; j++) {
+            temp_html += `
+            <td>
+                ${result.aggregate_dominance_matrix[i][j]}
+            </td>
+            `
+        }
+        temp_html += `</tr>`
+        $('#a-d-matrix').append(temp_html);
+    }
+
+    // Update Total Matriks Agregat
+    $('#sum-matrix').empty();
+
+    header_html = `
+    <tr>
+        <th>Total</th>
+    </tr>
+    `
+    $('#sum-matrix').append(header_html);
+
+    for (let i = 0; i < result.aggregate_list.length; i++) {
+        let temp_html = `
+        <tr>
+            <td>${result.aggregate_list[i]}</td>
+        </tr>
+        `
+        $('#sum-matrix').append(temp_html);
+    }
+
+    // Update Rangking Matriks Agregat
+    $('#rank-matrix').empty();
+
+    header_html = `
+    <tr>
+        <th>Rank</th>
+    </tr>
+    `
+    $('#rank-matrix').append(header_html);
+
+    for (let i = 0; i < result.aggregate_rank.length; i++) {
+        let temp_html = `
+        <tr>
+            <td>${result.aggregate_rank[i]}</td>
+        </tr>
+        `
+        $('#rank-matrix').append(temp_html);
     }
 }
 

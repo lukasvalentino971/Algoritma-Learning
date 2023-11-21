@@ -53,11 +53,11 @@
     <button type="submit" onclick="calculate_matrix()">Calculate Matrix</button>
 </div>
 
-<p class="electre-result-title">Result</p>
+<p class="electre-result-title" style="display: none;">Result</p>
 
 {% set y = 2 %}
 {% set x = 1 %}
-<div class="electre-result">
+<div class="electre-result" style="display: none;">
     <span class="title-electre-form" colspan="3">A. Normalized Matrix</span>
     <div class="flexed">
         <span class="title-electre-form">R = </span>
@@ -185,31 +185,32 @@
         <span class="title-electre-form">E = </span>
         <div>
             <table class="matrix" id="a-d-matrix">
-                {% for i in range(y) %}
                 <tr>
-                    {% for j in range(y) %}
-                    <td>0</td>
-                    {% endfor %}
+                    <th style="color: white">:)</th>
                 </tr>
-                {% endfor %}
+                <tr>
+                    <td>0</td>
+                </tr>
             </table>
         </div>
         <div>
             <table class="matrix" id="sum-matrix">
-                {% for i in range(y) %}
+                <tr>
+                    <th>Total</th>
+                </tr>
                 <tr>
                     <td>0</td>
                 </tr>
-                {% endfor %}
             </table>
         </div>
         <div>
             <table class="matrix" id="rank-matrix">
-                {% for i in range(y) %}
+                <tr>
+                    <th>Rank</th>
+                </tr>
                 <tr>
                     <td>0</td>
                 </tr>
-                {% endfor %}
             </table>
         </div>
         <div class="calculation">
