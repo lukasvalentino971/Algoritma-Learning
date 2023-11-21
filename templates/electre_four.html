@@ -55,8 +55,6 @@
 
 <p class="electre-result-title" style="display: none;">Result</p>
 
-{% set y = 2 %}
-{% set x = 1 %}
 <div class="electre-result" style="display: none;">
     <span class="title-electre-form" colspan="3">A. Normalized Matrix</span>
     <div class="flexed">
@@ -221,18 +219,21 @@
             eveniet magnam, iste ab?
         </div>
     </div>
-    <td class="title-electre-form" colspan="3">G. Eliminate Less Favorable Alternatives</td>
+    <div class="title-electre-form" colspan="3" id="eliminate-title">G. Eliminate Less Favorable Alternatives</div>
     <div class="flexed">
-        <span class="title-electre-form">E = </span>
+        <span class="title-electre-form" id="e-title">E = </span>
         <div>
             <table class="matrix" id="e-matrix">
-                {% for i in range(y) %}
                 <tr>
-                    <td>A{{ i+1 }}</td>
+                    <th>Alt</th>
+                    <th>E</th>
+                    <th>Rank</th>
+                </tr>
+                <tr>
+                    <td>A1</td>
                     <td></td>
                     <td></td>
                 </tr>
-                {% endfor %}
             </table>
         </div>
         <div class="calculation">

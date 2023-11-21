@@ -286,13 +286,53 @@ function change_result(result) {
     `
     $('#rank-matrix').append(header_html);
 
+    let count_one = 0
+
     for (let i = 0; i < result.aggregate_rank.length; i++) {
+        let value = result.aggregate_rank[i]
+        if (value == 1) {
+            count_one += 1
+        }
+
         let temp_html = `
         <tr>
-            <td>${result.aggregate_rank[i]}</td>
+            <td>${value}</td>
         </tr>
         `
         $('#rank-matrix').append(temp_html);
+    }
+
+    // Jika rank 1 didapatkan, Rangking Matriks Eliminasi tidak dijalankan
+    if (count_one == 1) {
+        $('#eliminate-title').hide();
+        $('#e-title').hide();
+        $('#e-matrix').hide();
+        return
+    }
+
+    // Update Rangking Matriks Eliminasi
+    $('#e-matrix').empty();
+
+    header_html = `
+    <tr>
+        <th>Alt</th>
+        <th>E</th>
+        <th>Rank</th>
+    </tr>
+    `
+
+    $('#e-matrix').append(header_html);
+
+    for (let i = 0; i < result.eliminate_rank.length; i++) {
+        let key = `A${i+1}`
+        let temp_html = `
+        <tr>
+            <td>A${ i+1 }</td>
+            <td>${result.eliminated_alternative[key]}</td>
+            <td>${result.eliminate_rank[i]}</td>
+        </tr>
+        `
+        $('#e-matrix').append(temp_html);
     }
 }
 
