@@ -3,6 +3,7 @@ from PIL import Image
 import os
 from static import electre_four as ef
 import json
+from static.caesar_cipher import caesar_encode, caesar_decode
 
 app = Flask(__name__)
 
@@ -52,7 +53,22 @@ def post_electre_four():
 
 @app.route('/Caesar_Cipher')
 def view_caesar_cipher():
-    return render_template("caesar_cipher.html")  
+    return render_template("caesar_cipher.html")
+
+@app.route('/Caesar_Cipher/result', methods=['POST'])
+def result():
+    if request.method == 'POST':
+        text = request.form['inputText']
+        shift = int(request.form['shiftAmount'])
+        operation = request.form['operation']
+
+        result_text = ''
+        if operation == 'encode':
+            result_text = caesar_encode(text, shift)
+        elif operation == 'decode':
+            result_text = caesar_decode(text, shift)
+
+        return render_template('caesar_cipher.html', result=result_text)  
     
 
 if __name__ == "__main__":
