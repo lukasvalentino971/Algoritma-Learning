@@ -53,11 +53,9 @@
     <button type="submit" onclick="calculate_matrix()">Calculate Matrix</button>
 </div>
 
-<p class="electre-result-title">Result</p>
+<p class="electre-result-title" style="display: none;">Result</p>
 
-{% set y = 2 %}
-{% set x = 1 %}
-<div class="electre-result">
+<div class="electre-result" style="display: none;">
     <span class="title-electre-form" colspan="3">A. Normalized Matrix</span>
     <div class="flexed">
         <span class="title-electre-form">R = </span>
@@ -93,30 +91,20 @@
     <span class="title-electre-form" colspan="3">C. Concordance</span>
     <div class="flexed">
         <div id="c-set">
-            {% for i in range(y) %}
-            {% for j in range(x) %}
-            {% if i != j %}
             <table>
                 <tr>
-                    <td class="title-electre-form">C{{i+1}}{{j+1}}</td>
+                    <td class="title-electre-form">C12</td>
                     <td>{0}</td>
                 </tr>
             </table>
-            {% endif %}
-            {% endfor %}
-            {% endfor %}
         </div>
         <div class="flexed">
             <span class="title-electre-form">C = </span>
             <div>
                 <table class="matrix" id="c-matrix">
-                    {% for i in range(y) %}
                     <tr>
-                        {% for j in range(x) %}
                         <td>0</td>
-                        {% endfor %}
                     </tr>
-                    {% endfor %}
                 </table>
             </div>
             <div class="calculation">
@@ -129,30 +117,20 @@
     <span class="title-electre-form" colspan="3">D. Discordance</span>
     <div class="flexed">
         <div>
-            {% for i in range(y) %}
-            {% for j in range(x) %}
-            {% if i != j %}
             <table>
                 <tr id="d-set">
-                    <td class="title-electre-form">D{{i+1}}{{j+1}}</td>
+                    <td class="title-electre-form">D12</td>
                     <td>{0}</td>
                 </tr>
             </table>
-            {% endif %}
-            {% endfor %}
-            {% endfor %}
         </div>
         <div class="flexed">
             <span class="title-electre-form">D = </span>
             <div>
                 <table class="matrix" id="d-matrix">
-                    {% for i in range(y) %}
                     <tr>
-                        {% for j in range(x) %}
                         <td>0</td>
-                        {% endfor %}
                     </tr>
-                    {% endfor %}
                 </table>
             </div>
             <div class="calculation">
@@ -169,13 +147,9 @@
         <div class="title-electre-form">C = </div>
         <div>
             <table class="matrix" id="d-c-matrix">
-                {% for i in range(y) %}
                 <tr>
-                    {% for j in range(y) %}
                     <td>0</td>
-                    {% endfor %}
                 </tr>
-                {% endfor %}
             </table>
         </div>
         <div class="calculation">
@@ -191,13 +165,9 @@
         <span class="title-electre-form">D = </span>
         <div>
             <table class="matrix" id="d-d-matrix">
-                {% for i in range(y) %}
                 <tr>
-                    {% for j in range(y) %}
                     <td>0</td>
-                    {% endfor %}
                 </tr>
-                {% endfor %}
             </table>
         </div>
         <div class="calculation">
@@ -213,31 +183,32 @@
         <span class="title-electre-form">E = </span>
         <div>
             <table class="matrix" id="a-d-matrix">
-                {% for i in range(y) %}
                 <tr>
-                    {% for j in range(y) %}
-                    <td>0</td>
-                    {% endfor %}
+                    <th style="color: white">:)</th>
                 </tr>
-                {% endfor %}
+                <tr>
+                    <td>0</td>
+                </tr>
             </table>
         </div>
         <div>
             <table class="matrix" id="sum-matrix">
-                {% for i in range(y) %}
+                <tr>
+                    <th>Total</th>
+                </tr>
                 <tr>
                     <td>0</td>
                 </tr>
-                {% endfor %}
             </table>
         </div>
         <div>
             <table class="matrix" id="rank-matrix">
-                {% for i in range(y) %}
+                <tr>
+                    <th>Rank</th>
+                </tr>
                 <tr>
                     <td>0</td>
                 </tr>
-                {% endfor %}
             </table>
         </div>
         <div class="calculation">
@@ -248,18 +219,21 @@
             eveniet magnam, iste ab?
         </div>
     </div>
-    <td class="title-electre-form" colspan="3">G. Eliminate Less Favorable Alternatives</td>
+    <div class="title-electre-form" colspan="3" id="eliminate-title">G. Eliminate Less Favorable Alternatives</div>
     <div class="flexed">
-        <span class="title-electre-form">E = </span>
+        <span class="title-electre-form" id="e-title">E = </span>
         <div>
             <table class="matrix" id="e-matrix">
-                {% for i in range(y) %}
                 <tr>
-                    <td>A{{ i+1 }}</td>
+                    <th>Alt</th>
+                    <th>E</th>
+                    <th>Rank</th>
+                </tr>
+                <tr>
+                    <td>A1</td>
                     <td></td>
                     <td></td>
                 </tr>
-                {% endfor %}
             </table>
         </div>
         <div class="calculation">
