@@ -336,24 +336,56 @@ function change_result(result) {
     }
 }
 
-// function calculate_csv() {
-//     var csv_file = $('#csv-file').val()
+function change_to_matrix() {
+    var csv_file = $('#csv-file')[0].files[0]
 
-//     let form_data = new FormData()
-//     form_data.append('csv_file', csv_file)
+    let form_data = new FormData()
+    form_data.append('csv_file', csv_file)
 
-//     $.ajax({
-//         type: 'POST',
-//         url: '/post_electre_four',
-//         data: form_data,
-//         contentType: false,
-//         processData: false,
-//         success: function (response) {
-//             console.log(response)
-//         },
-//         error: function (xhr, status, error) {
-//             // console.log(error)
-//             alert('Enter a New Matrix or Weight!!!\nInvalid Matrix or Weight!!!')
-//         }
-//     })
-// }
+    $.ajax({
+        type: 'POST',
+        url: '/post_csv_electre',
+        data: form_data,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            // console.log(response)
+            data = response.result
+            row = data.length
+            column = data[0].length
+
+            $('#row').val(row)
+            $('#column').val(column)
+
+            $('#initial-matrix').empty();
+            $('#weight-matrix').empty();
+
+            for (let i = 0; i < row; i++) {
+                let temp_html = `<tr>`
+                for (let j = 0; j < column; j++) {
+                    temp_html += `
+                    <td>
+                        <input type="number" id="x${ i }${ j }" min=0.01 value=${data[i][j]}>
+                    </td>
+                    `
+                }
+                temp_html += `</tr>`
+                $('#initial-matrix').append(temp_html);
+            }
+        
+            for (let j = 0; j < column; j++) {
+                let temp_html = `
+                <td>
+                    <input type="number" id="w${ j }" min=0.01>
+                </td>
+                `
+        
+                $('#weight-matrix').append(temp_html)
+            }
+        },
+        error: function (xhr, status, error) {
+            // console.log(error)
+            alert('Invalid CSV File!!!')
+        }
+    })
+}
