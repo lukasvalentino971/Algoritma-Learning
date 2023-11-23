@@ -4,6 +4,8 @@ import os
 from static import electre_four as ef
 import json
 from static.caesar_cipher import caesar_encode, caesar_decode
+import pandas as pd
+import numpy as np
 
 app = Flask(__name__)
 
@@ -34,13 +36,6 @@ def electre_four():
 @app.route('/post_electre_four', methods=["POST"])
 def post_electre_four():
     
-    # csv_file = request.files['csv_file']
-    
-    # if request.files['csv_file']:
-    #     csv_file = request.files['csv_file']
-    # else:
-    #     pass
-    
     matrix = request.form.get('matrix')
     weight = request.form.get('weight')
     
@@ -48,6 +43,30 @@ def post_electre_four():
     weight = json.loads(weight)
     
     result = ef.initiation(matrix, weight)
+    
+    return jsonify({'message': 'success', 'result': result})
+
+@app.route('/post_csv_electre', methods=["POST"])
+def post_csv_electre():
+        
+    csv_file = request.files['csv_file']
+    data = pd.read_csv(csv_file, header=None)
+    
+    if data.shape[1] == 1:
+        data_temp = []
+        
+        for i in range(len(data)):
+            data_split = str(data.iloc[i].values).replace('[', '').replace(']', '').strip("'").split(';')
+            data_temp.append(data_split)
+
+        data = pd.DataFrame(data_temp)
+    
+    if type(data[0][0]) == str:
+        data = data.drop(0, axis=0)
+    
+    data_list = data.values.tolist()
+    
+    result = data_list
     
     return jsonify({'message': 'success', 'result': result})
 
