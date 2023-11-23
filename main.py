@@ -5,6 +5,7 @@ from static import electre_four as ef
 import json
 from static.caesar_cipher import caesar_encode, caesar_decode
 import pandas as pd
+import numpy as np
 
 app = Flask(__name__)
 
@@ -51,8 +52,14 @@ def post_csv_electre():
     csv_file = request.files['csv_file']
     data = pd.read_csv(csv_file, header=None)
     
-    # for i in range(len(data)):
-    #     data[i] = data[i].split(';')
+    if data.shape[1] == 1:
+        data_temp = []
+        
+        for i in range(len(data)):
+            data_split = str(data.iloc[i].values).replace('[', '').replace(']', '').strip("'").split(';')
+            data_temp.append(data_split)
+
+        data = pd.DataFrame(data_temp)
     
     if type(data[0][0]) == str:
         data = data.drop(0, axis=0)
