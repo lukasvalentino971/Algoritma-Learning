@@ -7,15 +7,10 @@
         <tr>
             <td>
                 <div>
-                    <span class="title-electre-form">Input Matrix</span>
+                    <span class="title-electre-form">Masukan jumlah kriteria :</span>
                     <table>
                         <tr>
-                            <td>Row</td>
                             <td><input type="number" min=2 value=2 id="row" onchange="change_matrix_shape()"></td>
-                        </tr>
-                        <tr>
-                            <td>Column</td>
-                            <td><input type="number" min=1 value=1 id="column" onchange="change_matrix_shape()"></td>
                         </tr>
                     </table>
                 </div>
@@ -23,29 +18,21 @@
         </tr>
     </table>
     <hr>
+    <h4 class="h4-borda">Kriteria&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Peringkat</h4>
     <table class="buttom-electre-form" id="initial-matrix">
-        <tr>
-            <td>
-                <input type="number" id="x00" min=1>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="number" id="x10" min=1>
-            </td>
-        </tr>
+        <!-- Initial matrix inputs will be generated here -->
     </table>
-    <span class="title-electre-form">Weight</span>
+    
+    <span class="title-electre-form">Masukan bobot kriteria :
+    </span>
     <table class="buttom-electre-form" id="weight-matrix">
-        <tr>
-            <td>
-                <input type="number" id="w0" min=0.1>
-            </td>
-        </tr>
+        <!-- Weight matrix inputs will be generated here -->
     </table>
+
     <button type="submit" onclick="calculate_matrix()">Calculate Matrix</button>
 </div>
-  
-       
 
+<p class="electre-result-title" style="display: none;">Result</p>
+
+  <script src="../static/js/borda.js"></script>
 {% endblock %}
