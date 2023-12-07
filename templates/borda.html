@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<h1>BORDA</h1>
+<div class="electre-form">
+    <table class="top-electre-form">
+        <tr>
+            <td>
+                <div>
+                    <span class="title-electre-form">Input Matrix</span>
+                    <table>
+                        <tr>
+                            <td>Row</td>
+                            <td><input type="number" min=2 value=2 id="row" onchange="change_matrix_shape()"></td>
+                        </tr>
+                        <tr>
+                            <td>Column</td>
+                            <td><input type="number" min=1 value=1 id="column" onchange="change_matrix_shape()"></td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <table class="buttom-electre-form" id="initial-matrix">
+        <tr>
+            <td>
+                <input type="number" id="x00" min=1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="number" id="x10" min=1>
+            </td>
+        </tr>
+    </table>
+    <span class="title-electre-form">Weight</span>
+    <table class="buttom-electre-form" id="weight-matrix">
+        <tr>
+            <td>
+                <input type="number" id="w0" min=0.1>
+            </td>
+        </tr>
+    </table>
+    <button type="submit" onclick="calculate_matrix()">Calculate Matrix</button>
+</div>
+  
+       
+
+{% endblock %}

@@ -89,7 +89,9 @@ def result():
 
         return render_template('caesar_cipher.html', result=result_text)  
     
-
+@app.route('/borda')
+def view_borda():
+    return render_template("borda.html")
 if __name__ == "__main__":
     app.run(debug=True)
 
