@@ -92,6 +92,44 @@ def result():
 @app.route('/borda')
 def view_borda():
     return render_template("borda.html")
+
+
+@app.route('/post_borda', methods=['POST'])
+def post_borda():
+    data = request.json
+    initial_matrix = data['initialMatrix']
+    weight_matrix = data['weightMatrix']
+
+    # Panggil fungsi untuk mengalikan matriks
+    result = multiply_matrices(initial_matrix, weight_matrix)
+
+    if result is None:
+        return jsonify({"error": "Ukuran matriks tidak cocok"}), 400
+
+    # Contoh respons balik ke klien (JavaScript) dengan hasil perhitungan
+    return jsonify({"message": "Data diterima dan disimpan di server.", "result": result})
+
+
+def multiply_matrices(initial_matrix, weight_matrix):
+    result_matrix = []
+
+    # Pastikan ukuran initial_matrix dan weight_matrix sama
+    if len(initial_matrix) != len(weight_matrix):
+        return None  # Atau sesuaikan dengan penanganan error yang sesuai
+
+    for i in range(len(initial_matrix)):
+        row_result = []
+        for j in range(len(initial_matrix[i])):
+            multiplied_value = initial_matrix[i][j] * weight_matrix[j]
+            row_result.append(multiplied_value)
+        result_matrix.append(row_result)
+
+    return result_matrix
+
+@app.route('/copeland')
+def view_borda():
+    return render_template("copeland.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
 

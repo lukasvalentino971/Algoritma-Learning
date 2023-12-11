@@ -7,7 +7,7 @@
         <tr>
             <td>
                 <div>
-                    <span class="title-electre-form">Masukan jumlah kriteria :</span>
+                    <span class="title-electre-form">Masukan jumlah Alternatif :</span>
                     <table>
                         <tr>
                             <td><input type="number" min=2 value=2 id="row" onchange="change_matrix_shape()"></td>
@@ -18,21 +18,34 @@
         </tr>
     </table>
     <hr>
-    <h4 class="h4-borda">Kriteria&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Peringkat</h4>
+    <h4 class="h4-borda">Alternatif&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Peringkat</h4>
     <table class="buttom-electre-form" id="initial-matrix">
         <!-- Initial matrix inputs will be generated here -->
     </table>
     
-    <span class="title-electre-form">Masukan bobot kriteria :
+    <span class="title-electre-form">Masukan bobot :
     </span>
     <table class="buttom-electre-form" id="weight-matrix">
         <!-- Weight matrix inputs will be generated here -->
     </table>
 
-    <button type="submit" onclick="calculate_matrix()">Calculate Matrix</button>
+    <button type="submit" onclick="calculate()">Calculate</button>
 </div>
 
 <p class="electre-result-title" style="display: none;">Result</p>
+<div class="electre-result" style="display: none;">
+    <span class="title-electre-form" colspan="3">A. Borda Score</span>
+    <div class="flexed">
+        <table class="borda-matrix">
+            <tr>
+                <th>Altenatif</th>
+                <th>Skor</th>
+                <th>Rank</th>
+            </tr>
+            <!-- Data akan ditambahkan di sini dinamis dari JavaScript -->
+        </table>
+    </div>
+</div>
 
   <script src="../static/js/borda.js"></script>
 {% endblock %}

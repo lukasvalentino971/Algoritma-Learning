@@ -441,12 +441,41 @@ form {
 
 /*  borda */
 .h4-borda{
-   margin-left: -1125px;
+   margin-left: -950px;
 }
 .ke_borda{
     margin-top: 500px;
 }
+.borda-matrix {
+    width: 100%;
+    border-collapse: collapse;
+}
 
+.borda-matrix th,
+.borda-matrix td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.borda-matrix th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.borda-matrix tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.borda-matrix tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* Contoh penyesuaian gaya untuk teks warna hitam */
+.borda-matrix th,
+.borda-matrix td {
+    color: black;
+}
 
 
   
